@@ -12,12 +12,12 @@ const prodConfig = {
     },
     plugins: [
         new ModuleFederation({
-            name: 'container',
-            remotes: {
-                marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
-                auth: `auth@${domain}/auth/latest/remoteEntry.js`,
-                dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`
-            }
+            name: 'auth',
+            filename: 'remoteEntry.js',
+            exposes: {
+                './AuthApp': './src/bootstrap'
+            },
+            shared: packageJson.dependencies
         })
     ]
 }
